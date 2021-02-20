@@ -4,7 +4,7 @@ import sys
 import schedule
 import threading
 import time
-from datetime import datetime
+from django.utils import timezone
 
 def refresh_variables():
     with connection.cursor() as cursor:
@@ -22,8 +22,9 @@ def refresh_variables():
                 if var_model.value != var[1]:
                     var_model.value = var[1]
                     var_model.recently_modified = True
-                    var_model.last_modified = datetime.now()
-                else var_model.recently_modified = False
+                    var_model.last_modified = timezone.now()
+                else:
+                    var_model.recently_modified = False
                 var_model.save()
         print("finished refresing!")
 

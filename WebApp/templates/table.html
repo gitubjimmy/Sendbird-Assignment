@@ -46,9 +46,22 @@ $(document).ready(function(){
                 <tbody>
 										{% for var in variables %}
                     <tr>
+												{% if var.recently_modified %}
                         <td class="idx">{{forloop.counter}}</td>
                         <td class="name">{{var.name}}</td>
+                        <td class="value selected">
+													<div class="tooltip">{{var.value}}
+														<span class="tooltiptext">
+																modified date: {{var.last_modified}}</br>
+																previous value: {{var.previous}}</br>
+														</span>
+													</div>
+												</td>
+												{% else %}
+												<td class="idx">{{forloop.counter}}</td>
+                        <td class="name">{{var.name}}</td>
                         <td class="value">{{var.value}}</td>
+												{% endif %}
 										</tr>
                     {% endfor %}
                 </tbody>

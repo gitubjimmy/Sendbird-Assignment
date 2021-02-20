@@ -3,6 +3,7 @@ import os
 
 class VarTableConfig(AppConfig):
     name = 'var_table'
+    
     def ready(self):
         from . import cron
 
