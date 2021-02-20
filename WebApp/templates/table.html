@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap Simple Data Table</title>
+<title>MySQL Variables Table</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -21,12 +21,12 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div class="container-xl w-75 p-3">
+<div class="container-xl w-100 p-3">
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Customer <b>Details</b></h2></div>
+                    <div class="col-sm-8"><h2>Variable <b>Details</b></h2></div>
                     <div class="col-sm-4">
                         <div class="search-box">
                             <i class="material-icons">&#xE8B6;</i>
@@ -44,45 +44,15 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
+										{% for var in variables %}
                     <tr>
-                        <td class="idx">1</td>
-                        <td class="name">Thomas Hardy</td>
-                        <td class="value">89 Chiaroscuro Rd.</td>
+                        <td class="idx">{{forloop.counter}}</td>
+                        <td class="name">{{var.name}}</td>
+                        <td class="value">{{var.value}}</td>
 										</tr>
-                    <tr>
-                        <td class="idx">2</td>
-                        <td class="name">Maria Anders</td>
-                        <td class="value">Obere Str. 57</td>
-										</tr>
-                    <tr>
-                        <td class="idx">3</td>
-                        <td class="name">Fran Wilson</td>
-                        <td class="value">C/ Araquil, 67</td>
-                    </tr>
-                    <tr>
-                        <td class="idx">4</td>
-                        <td class="name">Dominique Perrier</td>
-                        <td class="value">25, rue Lauriston</td>
-                    </tr>
-                    <tr>
-                        <td class="idx">5</td>
-                        <td class="name">Martin Blank</td>
-                        <td class="value">Via Monte Bianco 34</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
-            <div class="clearfix">
-                <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>

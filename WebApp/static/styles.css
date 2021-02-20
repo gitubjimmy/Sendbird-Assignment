@@ -80,10 +80,12 @@ table.table td i {
   text-align: center;
 }
 .name {
-  width: 45%;
+  width: 40%;
+  word-break: break-word;
 }
 .value {
-  width: 45%;
+  width: 40%;
+  word-break: break-word;
 }
 
 .pagination {

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Variables
 
 def page(request):
-    return render(request, 'table.html', {})
+    variables = Variables.objects.all()
+    return render(request, 'table.html', {'variables': variables})
