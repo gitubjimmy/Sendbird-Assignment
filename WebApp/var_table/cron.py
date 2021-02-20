@@ -4,15 +4,28 @@ import sys
 import schedule
 import threading
 import time
+from datetime import datetime
 
 def refresh_variables():
     with connection.cursor() as cursor:
+        print("refresing variable information...")
         cursor.execute("show variables")
         var_list = cursor.fetchall()
         for var in var_list:
-            print(var)
-            var_model = Variables(name=var[0], value=var[1])
-            var_model.save()
+            query = Variables.objects.filter(name=var[0])
+            if len(query)==0:
+                var_model = Variables(name=var[0], value=var[1])
+                var_model.save()
+            else:
+                var_model = query[0]
+                var_model.previous = var_model.value
+                if var_model.value != var[1]:
+                    var_model.value = var[1]
+                    var_model.recently_modified = True
+                    var_model.last_modified = datetime.now()
+                else var_model.recently_modified = False
+                var_model.save()
+        print("finished refresing!")
 
 def run_continuously(interval=1):
     """Continuously run, while executing pending jobs at each
